@@ -5,6 +5,7 @@ import { eq } from "drizzle-orm";
 import { clientCheckRequestSchema } from "@/lib/validators";
 import { checkRateLimit, verifyAndStoreNonce } from "@/lib/ratelimit";
 import { signPayload } from "@/lib/signing";
+import crypto from "crypto";
 
 export async function POST(req: NextRequest) {
   const ip = req.headers.get("x-forwarded-for")?.split(",")[0] || "127.0.0.1";
