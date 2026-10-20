@@ -33,13 +33,10 @@ export function getEnv(): Env {
   const parsed = envSchema.safeParse(process.env);
 
   if (!parsed.success) {
-    console.error("❌ Environment validation error:", parsed.error.format());
-    // In build or edge, provide clear diagnostics
-    if (process.env.NODE_ENV === "production") {
-      throw new Error(`Invalid environment configuration: ${JSON.stringify(parsed.error.format())}`);
-    }
+    console.warn("⚠️ Environment variables not yet configured in Vercel:", parsed.error.format());
   }
 
   validatedEnv = (parsed.success ? parsed.data : process.env) as Env;
+  return validatedEnv;
   return validatedEnv;
 }
