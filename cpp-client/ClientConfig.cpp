@@ -32,8 +32,7 @@ namespace ClientRuntime
     const wchar_t* SERVER_CHECK_PATH = L"/api/client/check";
 
     // Server Ed25519 Public Verification Key Hex (32 bytes = 64 hex characters)
-    // REPLACE THIS with the output from `npm run generate-keys`
-    const char* SERVER_PUBLIC_KEY_HEX = "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef";
+    const char* SERVER_PUBLIC_KEY_HEX = "c25625fed66aee543b77ea7580ce82f163e9fc0ebd4dc67b61dc0b49fc92aeef";
 
     ClientConfig g_Config;
 
