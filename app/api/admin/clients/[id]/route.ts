@@ -55,7 +55,12 @@ export async function PATCH(req: NextRequest, { params }: Params) {
       updatedAt: new Date(),
     };
     if (data.expiresAt !== undefined) {
-      updateValues.expiresAt = data.expiresAt ? new Date(data.expiresAt) : null;
+      if (data.expiresAt && typeof data.expiresAt === "string" && data.expiresAt.trim() !== "") {
+        const d = new Date(data.expiresAt);
+        updateValues.expiresAt = isNaN(d.getTime()) ? null : d;
+      } else {
+        updateValues.expiresAt = null;
+      }
     }
 
     let updatedClient = null;
