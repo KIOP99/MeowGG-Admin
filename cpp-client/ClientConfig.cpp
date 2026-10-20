@@ -22,6 +22,14 @@
 #define BCRYPT_ED25519_ALGORITHM L"ED25519"
 #endif
 
+#ifndef WINHTTP_NO_REFERER
+#define WINHTTP_NO_REFERER ((LPCWSTR)NULL)
+#endif
+
+#ifndef WINHTTP_NO_REFERRER
+#define WINHTTP_NO_REFERRER WINHTTP_NO_REFERER
+#endif
+
 namespace ClientRuntime
 {
     // Default Embedded Client ID (Override this per build or client trailer)
@@ -143,7 +151,7 @@ namespace ClientRuntime
         }
 
         HINTERNET hRequest = WinHttpOpenRequest(hConnect, L"POST", path.c_str(),
-            NULL, WINHTTP_NO_REFERRER,
+            NULL, WINHTTP_NO_REFERER,
             WINHTTP_DEFAULT_ACCEPT_TYPES,
             WINHTTP_FLAG_SECURE);
         if (!hRequest) {
